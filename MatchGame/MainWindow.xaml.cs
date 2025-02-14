@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -52,14 +53,14 @@ public partial class MainWindow : Window
             "🦑","🦑",
             "🐇","🐇",
             "🐒","🐒",
-            "🐫","🐫"
+            "🐫","🐫",
         };
 
         Random random = new Random();
 
         foreach (TextBlock textBlock in mainGrid.Children.OfType<TextBlock>())
         {
-            if (textBlock.Name != "timeTextBlock")
+            if (textBlock.Name != "timeTextBlock" && textBlock.Name != "resetButton")
             {
                 textBlock.Visibility = Visibility.Visible;
                 int index = random.Next(animalEmoji.Count);
@@ -105,5 +106,10 @@ public partial class MainWindow : Window
         {
             SetUpgame();
         }
+    }
+
+    private void ResetButton_MouseDown(object sender, MouseButtonEventArgs e)
+    {
+        SetUpgame();
     }
 }
